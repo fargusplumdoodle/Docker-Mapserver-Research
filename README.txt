@@ -3,10 +3,23 @@ Load Testing script for Mapserver
 ---------------------------------
 Isaac Thiessen, 2019-11-04
 
-Issues:
-    Jmeter showing a lot of false negatives. If you are finding this error "Non HTTP response code: org.apache.http.NoHttpResponseException,Non HTTP response message:" in your jmeter csv
-    you are getting this bug outline
-    https://stackoverflow.com/questions/27942583/non-http-response-message-the-target-server-failed-to-respond-is-my-server-fai
+----------------------------------------------------------------------------------
+# NOTE:
+----------------------------------------------------------------------------------
+
+This repository is a subset of a project I worked on  
+for NFIS during my Co-op there.
+
+I have recieved permission to publish this information
+from my manager as long as I strip out all of the sensitive 
+information.
+
+Unfortunatley there has been a lot of sensitive information
+that I have had to remove.
+
+For the TL;DR of this whole project, refer to the "Load Testing Report.pdf"
+
+----------------------------------------------------------------------------------
 
 Purpose:
     To determine the resource impact of switching to Docker Mapserver oppose to keeping
@@ -35,7 +48,6 @@ Setup:
 
     Docker Server requirements:
         - Docker version 19.03.3
-        - NFI CamptoCamp image ( in this repo )
 
     Apache Server requirements:
         - Mapserver
@@ -140,4 +152,9 @@ Procedure:
 
          This is a summary of the system resources while undergoing the jMeter test. The graph shows the specific values
          over time.
+
+Issues:
+    Jmeter showing a lot of false negatives. If you are finding this error "Non HTTP response code: org.apache.http.NoHttpResponseException,Non HTTP response message:" in your jmeter csv
+    you are getting this bug outline
+    https://stackoverflow.com/questions/27942583/non-http-response-message-the-target-server-failed-to-respond-is-my-server-fai
 
