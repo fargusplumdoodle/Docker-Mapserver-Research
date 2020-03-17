@@ -1,0 +1,62 @@
+This is a list of the attributes for the test_results.csv file.
+These are also shown in the "stats.txt" of each test directory.
+This is an explanation of exactly what they all mean.
+
+
+STATS:
+"date":
+    date of scan
+"host":
+    host that the scan was ran against. These are grouped into their own directories from the reports directory
+"test_name":
+    name of test, its directory can be found as a subdirectory of the host directory
+"duration":
+    duration of test in seconds
+"failure_rate ":
+    percentage of requests that did NOT result in a 200 status code
+"test_plan":
+    the jmeter test plan that was used for the test, a copy can be found in the tests directory
+"max_processes":
+    the value of the MAX_PROCESSES enviroment variable passed in to the mapserver container. This
+     is for the FCGI module for apache. This number signifigantly effects performance, it defaults
+     to 5, but 5 is too low.
+"max_requests_per_process":
+    the value of the MAX_REQUESTS_PER_PROCESS enviroment variable passed in to the mapserver container.
+    This defaults to 1000, and so far that seems to be ok.
+"cpus":
+    Number of virtual CPUs the host has
+"cpu_avg_usage":
+    the average  CPU usage during the test across all cores given in percent.
+"cpu_max_usage":
+    the maximum CPU usage recorded during the test across all cores given in percent.
+"cpu_min_usage":
+    the minimum CPU usage recorded during the test across all cores given in percent.
+"mem_avg_usage":
+    the average memory usage during the test, given in gigabytes.
+"mem_max_usage":
+    the maximum memory usage recorded during the test, given in gigabytes.
+"mem_min_usage":
+    the minimum memory usage recorded during the test, given in gigabytes.
+"load1m_avg":
+    the average 1m load during the test.
+    This is from the 1m, 5m, 15m load from the uptime command
+"load1m_max":
+    the maximum 1m load during the test.
+    This is from the 1m, 5m, 15m load from the uptime command
+"load1m_min":
+    the minimum 1m load during the test.
+    This is from the 1m, 5m, 15m load from the uptime command
+"latency_avg":
+    This is the average latency of the response from the server given in milliseconds
+    Lower is better. Latency is the length of time it took the server to respond.
+"latency_max":
+    This is the maximum latency of the response from the server given in milliseconds
+    Lower is better. Latency is the length of time it took the server to respond.
+"latency_min":
+    This is the mimum latency of the response from the server given in milliseconds
+    Lower is better. Latency is the length of time it took the server to respond.
+"total_requests":
+    The total number of requests made during the test
+"thoughput":
+    The average number of requests the server handled per minute during the test.
+    Units: requests/minute

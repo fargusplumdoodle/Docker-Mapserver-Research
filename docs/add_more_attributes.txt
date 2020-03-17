@@ -1,0 +1,19 @@
+# Adding More Attributes to scan
+
+In this project, attribute refers to a property or datapoint summarized from
+a load test.
+
+## Procedure:
+
+1. Determine what the attribute you want to add is and how to calculate it.
+   Add a detailed description in "docs/load_test_attribute_definitions.txt"
+
+2. If the your attribute can be calculated from jmeter data, add a function
+   to the AnalyzeJmeter class in "./scripts/analyze_jmeter.py". if its from
+   dstat, edit the AnalyzeDstat class in "./scripts/analyze_dstat.py".
+
+   Your function name should start with "get" and be descriptive.
+
+3. Edit  "scripts/analyze_report.py" in step 4 the "stats" object is created
+   just add your attribute name as a key and call the function you created
+   from either "./scripts/analyze_jmeter.py" or "./scripts/analyze_dstat.py".

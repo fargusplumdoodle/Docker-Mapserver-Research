@@ -1,0 +1,54 @@
+ISSUE: error rate is non zero value during testing
+--------------------------------------------------
+This seems to occur across all testing VMs 
+
+On host 4 (my local vm) origionally had 1 CPU and the error
+rate was close to 60% during the official test
+
+I increased the CPUS to 4 and the error rate went down to 0 during the official test.
+During the extreme test the error rate was ~1%. This may be acceptable but I want
+to see if I can get it down to 0.
+
+Testplans:
+	official: 3000 requests over ~100 seconds
+	extreme: 6000 requests over ~100 seconds
+	1200: 12000 requests over ~100 seconds
+
+	However these tests often take longer due to lack of computing power on the test VMs
+
+This is the error:
+[warn] [pid 24] mod_fcgid: can't apply process slot for /usr/local/bin/mapserv_wrapper
+
+VM	 MAX_REQUESTS_PER_PROCESS	testplan	error rate	cpus	testname	MAX_PROCESSES
+------------------------------------------------------------------------------------------------------------
+4	1000				official 	60%		1				5
+4	1000				official 	2.53%		4	official_1000mrpp	5	
+4	1000				extreme  	1%		4	extreme			5
+4	1000				extreme  	2.88%		4	extreme_1000mrpp	5
+4	500				extreme  	6.70%		4	extreme_500mrpp		5
+4	1500				extreme  	5.92%		4	extreme_1500mrpp	5
+4	1000				extreme  	0%		4	extreme_10mp		10	
+4	1000				extreme  	0%		4	extreme_10mp_2		10	
+4	1000				official 	0%		4	official_10mp		10	
+4	1000				official 	0%		4	official_5mp		5	
+-----  VM 3  -----
+3	1000 (test aborted)		official	~60% 		2	official_5mp		5	
+3	1000 (test aborted)		official	~40%		2	official_10mp		10	
+3	1000				extreme		80.52%		2	extreme_5mp		5	
+3	1000 (test aborted)		extreme		~72%		2	extreme_10mp		10	
+3	1000 (test aborted)		extreme		~74%		2	extreme_20mp		20	
+3	1000 				extreme		35.38%		2	extreme_100mp		100	
+3	1000 				extreme		28.68%		2	extreme_500mp		500	
+3	1000 				extreme		29.88%		2	extreme_1000mp		1000	
+-----  VM 3 --  4 CORES -----
+3	1000				official	0% 		4	official_5mp_4core	5	
+3	1000				official	0% 		4	official_10mp_4core	10	
+3	1000				extreme		8.65% 		4	extreme_5mp_4core	5	
+3	1000  				extreme		0.30%		4	extreme_10mp_4core	10	
+3	1000  				extreme		14.55%		4	extreme_15mp_4core	15	
+3	1000  				extreme		0%		4	extreme_20mp_4core	20	
+3	1000  				extreme		0%		4	extreme_20mp_4core_2	20	
+3	1000  				extreme		0%		4	extreme_100mp_4core	100	
+3	1000  				1200		51.73%		4	1200_20mp_4core		20
+3	1000  				1200		36.33%		4	1200_100mp_4core	100
+3	1000  				1200		23.67%		4	1200_1000mp_4core	1000
